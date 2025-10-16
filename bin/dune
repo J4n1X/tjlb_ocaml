@@ -1,0 +1,11 @@
+(executable
+ (public_name parser)
+ (name main)
+ (preprocess (pps ppx_deriving.show ))
+ (libraries parcoom))
+
+(env 
+ (dev
+  (flags (:standard -w -32-34-37-39-40-41-42-44-45-48))
+ )
+)

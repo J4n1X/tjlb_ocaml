@@ -1,0 +1,4 @@
+(library 
+ (name parcoom)
+ (public_name tjlb_ocaml.parcoom)
+)

@@ -1,0 +1,22 @@
+const u8 * out_cstr = "Hello, World!"
+extern fn puts(char * s) -> u0
+type struct string {
+  u32 len,
+  char * val
+}
+const fn strlen(char * str) -> u32 {
+  char * it = str
+  u32 counter = 0
+  while (*it != 0) {
+    counter += 1
+    it += 1
+  }
+  return counter
+}
+const fn(char *) -> u32 countFunc = strlen
+const string outVal = { len: strlen(out_cstr), val: out_cstr }
+fn main(i32 argc, char * * argv) -> i32 {
+  string test = { len: countFunc(out_cstr), val: out_cstr }
+  puts(out_cstr)
+  return 0
+}
