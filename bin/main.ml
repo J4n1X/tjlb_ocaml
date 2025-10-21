@@ -37,7 +37,12 @@ let test_keywords () =
     | Error {desc; pos} -> Printf.printf "Error at pos %d: %s\n" pos desc
 
 let read_and_parse_file (filename: string) =
-    let ic = open_in filename in
+    let ic =
+        try open_in filename with
+        | Sys_error msg ->
+            Printf.eprintf "Failed to open %s: %s\n" filename msg;
+            exit 1
+    in
     let rec read_lines acc =
         try
             let line = input_line ic in
@@ -56,5 +61,12 @@ let () =
     (*test_basic ();
     test_numbers ();
     test_keywords ()*)
-    let filename = "test_input.txt" in
+    let filename =
+        if Array.length Sys.argv > 1 then
+            Sys.argv.(1)
+        else (
+            Printf.eprintf "Usage: %s <input-file>\n" Sys.argv.(0);
+            exit 1
+        )
+    in
     read_and_parse_file filename
